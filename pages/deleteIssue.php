@@ -6,7 +6,7 @@ $id = $_GET["id"];
 if(!is_numeric($id))
     die("Hey, stop playing with the URL...");
 
-$query = "UPDATE issues SET open = 0 WHERE id = $id LIMIT 1";
+$query = "DELETE FROM issues WHERE id = $id LIMIT 1";
 $result = $db->query($query);
 
 header("Location: ../index.php");

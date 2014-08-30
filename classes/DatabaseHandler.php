@@ -12,4 +12,10 @@ class DatabaseHandler
     {
         return $this->connection->query($query);
     }
+
+    function sanitize($str)
+    {
+        $str = $this->connection->real_escape_string($str);
+        return htmlentities($str);
+    }
 }

@@ -1,6 +1,28 @@
 <?php
     require "config.php";
     $db = new DatabaseHandler();
+
+    if(isset($_GET["p"]))
+    {
+        $page = $_GET["p"];
+
+        switch($page)
+        {
+            case "writeIssue":
+                $page = "writeIssue";
+                break;
+            case "statistics":
+                $page = "statistics";
+                break;
+            default:
+                $page = "home";
+                break;
+        }
+    }
+    else
+    {
+        $page = "home";
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,50 +31,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="img/favicon.ico">
-    <title>Title</title>
+    <title><?php echo TITLE; ?></title>
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
+    <div class="container" id="toTheTop">
+        <div class="header" id="header">
             <ul class="nav nav-pills pull-right">
-                <li class="active"><a href="index.php">Home</a></li>
-                <li><a href="index.php?p=writeIssue">Write issue</a></li>
-                <li><a href="index.php?p=statistics">Statistics</a></li>
+                <li<?php if($page == "home") echo " class=\"active\""; ?>><a href="index.php">Home</a></li>
+                <li<?php if($page == "writeIssue") echo " class=\"active\""; ?>><a href="index.php?p=writeIssue">Write issue</a></li>
+                <li<?php if($page == "statistics") echo " class=\"active\""; ?>><a href="index.php?p=statistics">Statistics</a></li>
             </ul>
-            <h3 class="text-muted">Project name</h3>
+            <h3 class="text-muted"><?php echo TITLE; ?></h3>
         </div>
 
         <?php
-        if(isset($_GET["p"]))
-        {
-            $page = $_GET["p"];
-        }
-        else
-        {
-            $page = "home";
-        }
-
-        switch($page)
-        {
-            case "writeIssue":
-                $page = "";
-                break;
-            case "statistics":
-                $page = "";
-                break;
-            default:
-                $page = "pages/home.php";
-                break;
-        }
-        
-        require $page;
+        require "pages/" . $page . ".php";
         ?>
 
         <div class="footer">
-            <p><a href="#header">Back to top</a></p>
+            <p><a href="#toTheTop">Back to top</a></p>
         </div>
     </div> <!-- /container -->
 </body>
