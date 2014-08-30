@@ -1,4 +1,7 @@
-
+<?php
+    require "config.php";
+    $db = new DatabaseHandler();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,27 +27,63 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h3>Subheading</h3>
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-                <h4>Subheading</h4>
-                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-                <h4>Subheading</h4>
-                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+                <h3>Open</h3>
+                <table class="table table-striped">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Writer</th>
+                    </tr>
+                    <?php
+                        $html = "";
+                        $query = "SELECT * FROM issues WHERE open = 1";
+                        $result = $db->query($query);
+                        while($row = mysqli_fetch_array($result))
+                        {
+                            $html .= "<tr>";
+                            $html .= "<td>" . $row["id"] . "</td>";
+                            $html .= "<td>" . $row["title"] . "</td>";
+                            $html .= "<td>" . $row["description"] . "</td>";
+                            $html .= "<td>" . $row["category"] . "</td>";
+                            $html .= "<td>" . $row["writer"] . "</td>";
+                            $html .= "</tr>";
+                        }
+                        echo $html;
+                    ?>
+                </table>
             </div>
         </div>
 
         <div class="row">
             <div class="col-lg-12">
-                <h3>Subheading</h3>
-                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-                <h4>Subheading</h4>
-                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-                <h4>Subheading</h4>
-                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+                <h3>Closed</h3>
+                <table class="table table-striped">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th>Writer</th>
+                    </tr>
+                    <?php
+                        $html = "";
+                        $query = "SELECT * FROM issues WHERE open = 0";
+                        $result = $db->query($query);
+                        while($row = mysqli_fetch_array($result))
+                        {
+                            $html .= "<tr>";
+                            $html .= "<td>" . $row["id"] . "</td>";
+                            $html .= "<td>" . $row["title"] . "</td>";
+                            $html .= "<td>" . $row["description"] . "</td>";
+                            $html .= "<td>" . $row["category"] . "</td>";
+                            $html .= "<td>" . $row["writer"] . "</td>";
+                            $html .= "</tr>";
+                        }
+                        echo $html;
+                    ?>
+                </table>
             </div>
         </div>
 
