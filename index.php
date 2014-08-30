@@ -18,74 +18,38 @@
     <div class="container">
         <div class="header">
             <ul class="nav nav-pills pull-right">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li class="active"><a href="index.php">Home</a></li>
+                <li><a href="index.php?p=writeIssue">Write issue</a></li>
+                <li><a href="index.php?p=statistics">Statistics</a></li>
             </ul>
             <h3 class="text-muted">Project name</h3>
         </div>
 
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>Open</h3>
-                <table class="table table-striped">
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Category</th>
-                        <th>Writer</th>
-                    </tr>
-                    <?php
-                        $html = "";
-                        $query = "SELECT * FROM issues WHERE open = 1";
-                        $result = $db->query($query);
-                        while($row = mysqli_fetch_array($result))
-                        {
-                            $html .= "<tr>";
-                            $html .= "<td>" . $row["id"] . "</td>";
-                            $html .= "<td>" . $row["title"] . "</td>";
-                            $html .= "<td>" . $row["description"] . "</td>";
-                            $html .= "<td>" . $row["category"] . "</td>";
-                            $html .= "<td>" . $row["writer"] . "</td>";
-                            $html .= "</tr>";
-                        }
-                        echo $html;
-                    ?>
-                </table>
-            </div>
-        </div>
+        <?php
+        if(isset($_GET["p"]))
+        {
+            $page = $_GET["p"];
+        }
+        else
+        {
+            $page = "home";
+        }
 
-        <div class="row">
-            <div class="col-lg-12">
-                <h3>Closed</h3>
-                <table class="table table-striped">
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Category</th>
-                        <th>Writer</th>
-                    </tr>
-                    <?php
-                        $html = "";
-                        $query = "SELECT * FROM issues WHERE open = 0";
-                        $result = $db->query($query);
-                        while($row = mysqli_fetch_array($result))
-                        {
-                            $html .= "<tr>";
-                            $html .= "<td>" . $row["id"] . "</td>";
-                            $html .= "<td>" . $row["title"] . "</td>";
-                            $html .= "<td>" . $row["description"] . "</td>";
-                            $html .= "<td>" . $row["category"] . "</td>";
-                            $html .= "<td>" . $row["writer"] . "</td>";
-                            $html .= "</tr>";
-                        }
-                        echo $html;
-                    ?>
-                </table>
-            </div>
-        </div>
+        switch($page)
+        {
+            case "writeIssue":
+                $page = "";
+                break;
+            case "statistics":
+                $page = "";
+                break;
+            default:
+                $page = "pages/home.php";
+                break;
+        }
+        
+        require $page;
+        ?>
 
         <div class="footer">
             <p><a href="#header">Back to top</a></p>
