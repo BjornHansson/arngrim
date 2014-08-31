@@ -6,6 +6,7 @@ class DatabaseHandler
     function __construct()
     {
         $this->connection = new mysqli(HOST, USER, PASSWORD, DATABASE);
+        $this->connection->set_charset("utf8");
     }
 
     function query($query)
@@ -16,6 +17,6 @@ class DatabaseHandler
     function sanitize($str)
     {
         $str = $this->connection->real_escape_string($str);
-        return htmlentities($str);
+        return htmlspecialchars($str);
     }
 }

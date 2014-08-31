@@ -14,7 +14,7 @@ if(!$db->query("SELECT id FROM issues"))
         writer varchar(255) NOT NULL,
         open tinyint(1) NOT NULL,
         PRIMARY KEY (id)
-    ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+    ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
     ";
     $db->query($query);
 

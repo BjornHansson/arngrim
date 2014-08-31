@@ -7,11 +7,12 @@ if(!empty($_POST))
     $date = date("Y-m-d");
     $formData = array();
     $formData[] = $date;
-    foreach ($_POST as $key => $value) {
+    foreach($_POST as $key => $value)
+    {
         $formData[] = $db->sanitize($value);
     }
     $formData[] = "1";
-    $sqlValues = implode('\', \'', $formData);
+    $sqlValues = implode("', '", $formData);
 
     $query = "INSERT INTO issues (date, title, description, writer, category, open) VALUES ('{$sqlValues}');";
     $result = $db->query($query);
