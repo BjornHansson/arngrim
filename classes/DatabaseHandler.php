@@ -1,22 +1,27 @@
 <?php
 class DatabaseHandler
 {
-    var $connection;
+    private $connection;
 
-    function __construct()
+    public function __construct()
     {
         $this->connection = new mysqli(HOST, USER, PASSWORD, DATABASE);
         $this->connection->set_charset("utf8");
     }
 
-    function query($query)
+    public function query($query)
     {
         return $this->connection->query($query);
     }
 
-    function sanitize($str)
+    public function sanitize($str)
     {
         $str = $this->connection->real_escape_string($str);
         return htmlspecialchars($str);
+    }
+
+    public function __destruct()
+    {
+        $this->connection->close();
     }
 }

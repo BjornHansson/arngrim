@@ -12,6 +12,7 @@ if(!$db->query("SELECT id FROM issues"))
         description text NOT NULL,
         category varchar(255) NOT NULL,
         writer varchar(255) NOT NULL,
+        url varchar(255) NULL,
         open tinyint(1) NOT NULL,
         PRIMARY KEY (id)
     ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
@@ -19,15 +20,22 @@ if(!$db->query("SELECT id FROM issues"))
     $db->query($query);
 
     $query = "
-    INSERT INTO issues (id, title, description, category, writer, open) VALUES
-    (1, 'Title', 'Description', 'Category', 'Writer', 1),
-    (2, 'Title', 'Description', 'Category', 'Writer', 0);
+    INSERT INTO issues (id, title, description, category, writer, url, open) VALUES
+    (1, 'Title', 'Description', 'Category', 'Writer', '', 1),
+    (2, 'Title', 'Description', 'Category', 'Writer', 'http://mylinktogerrit.com', 0);
     ";
-    $db->query($query);
+    $result = $db->query($query);
 
-    echo "Installation successful!";
+    if($result)
+    {
+        echo "$result Installation successful!";
+    }
+    else
+    {
+        echo "Something went wrong during the installation...";
+    }
 }
 else
 {
-    echo "No installation performed, the table already exist";
+    echo "No installation performed, the table already exist.";
 }
