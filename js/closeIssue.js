@@ -1,13 +1,11 @@
-"use strict";
-
-var buttons = document.getElementsByClassName("closeIssue");
-var length = buttons.length;
-for (var i = 0; i < length; i++)
+$(function()
 {
-    buttons[i].addEventListener("click", function(event)
+    "use strict";
+
+    $(".closeIssue").click(function(event)
     {
         event.preventDefault();
         var result = prompt("Enter URL to the solution of this issue: ");
         window.location.href = event.target.href + "&url=" + result;
-    }, false);
-}
+    });
+});
