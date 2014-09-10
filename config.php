@@ -4,6 +4,6 @@ define("USER", "root");
 define("PASSWORD", "");
 define("DATABASE", "arngrim");
 
-define("TITLE", "Arngrim - Issue tracker");
+define("TITLE", "Arngrim - Bug and issue tracker");
 
 require "classes/DatabaseHandler.php";
