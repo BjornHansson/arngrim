@@ -15,6 +15,6 @@ PHP and MySQL because it is so easy to use and open source.
 -----------
 - Bootstrap for beautiful design.
 - jQuery for easy JavaScript.
-- JSHint (npm) to validate the JavaScript. (Not included in the repo)
+- JSHint (through npm) to validate the JavaScript.
 - Favicon from Openclipart.
-- Testing (TBD)
+- PHPUnit for unit tests.
