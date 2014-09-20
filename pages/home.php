@@ -12,6 +12,8 @@
                 <th>Action</th>
             </tr>
             <?php
+                $db = new DatabaseHandler();
+
                 $html = "";
                 $query = "SELECT * FROM issues WHERE open = 1 ORDER BY id DESC";
                 $result = $db->query($query);
@@ -24,8 +26,8 @@
                     $html .= "<td>" . $row["description"] . "</td>";
                     $html .= "<td>" . $row["category"] . "</td>";
                     $html .= "<td>" . $row["writer"] . "</td>";
-                    $html .= "<td><a href=\"pages/closeIssue.php?id=" . $row["id"] . "\" class=\"btn btn-info closeIssue\">Close</a> ";
-                    $html .= "<a href=\"pages/deleteIssue.php?id=" . $row["id"] . "\" class=\"btn btn-danger\">Delete</a></td>";
+                    $html .= "<td><a href=\"index.php?p=closeIssue&id=" . $row["id"] . "\" class=\"btn btn-info closeIssue\">Close</a> ";
+                    $html .= "<a href=\"index.php?p=deleteIssue&id=" . $row["id"] . "\" class=\"btn btn-danger\">Delete</a></td>";
                     $html .= "</tr>";
                 }
                 echo $html;
@@ -61,8 +63,8 @@
                     $html .= "<td>" . $row["category"] . "</td>";
                     $html .= "<td>" . $row["writer"] . "</td>";
                     $html .= "<td>" . $row["url"] . "</td>";
-                    $html .= "<td><a href=\"pages/reopenIssue.php?id=" . $row["id"] . "\" class=\"btn btn-info\">Reopen</a> ";
-                    $html .= "<a href=\"pages/deleteIssue.php?id=" . $row["id"] . "\" class=\"btn btn-danger\">Delete</a></td>";
+                    $html .= "<td><a href=\"index.php?p=reopenIssue&id=" . $row["id"] . "\" class=\"btn btn-info\">Reopen</a> ";
+                    $html .= "<a href=\"index.php?p=deleteIssue&id=" . $row["id"] . "\" class=\"btn btn-danger\">Delete</a></td>";
                     $html .= "</tr>";
                 }
                 echo $html;

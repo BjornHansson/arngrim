@@ -1,6 +1,6 @@
 <?php
 $html = <<<EOT
-<form class="form-horizontal" action="pages/createIssue.php" method="post">
+<form class="form-horizontal" action="index.php?p=createIssue" method="post">
     <label>Title</label>
     <input name="title" class="form-control" type="text" required />
 

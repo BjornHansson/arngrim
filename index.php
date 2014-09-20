@@ -1,6 +1,6 @@
 <?php
     require "config.php";
-    $db = new DatabaseHandler();
+    $pageController = new PageController();
 
     if(isset($_GET["p"]))
     {
@@ -13,6 +13,21 @@
                 break;
             case "statistics":
                 $page = "statistics";
+                break;
+            case "closeIssue":
+                $id = $_GET["id"];
+                $pageController->closeIssue($id);
+                break;
+            case "deleteIssue":
+                $id = $_GET["id"];
+                $pageController->deleteIssue($id);
+                break;
+            case "reopenIssue":
+                $id = $_GET["id"];
+                $pageController->reopenIssue($id);
+                break;
+            case "createIssue":
+                $pageController->createIssue();
                 break;
             default:
                 $page = "home";

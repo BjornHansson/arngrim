@@ -1,4 +1,5 @@
 <?php
+    $db = new DatabaseHandler();
     // First chart
     $thisMonth = date("F");
     $startDate = date("Y-m-01");
