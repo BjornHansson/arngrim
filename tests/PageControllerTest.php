@@ -5,11 +5,10 @@ class PageControllerTest extends PHPUnit_Framework_TestCase
      * @expectedException        RuntimeException
      * @expectedExceptionMessage ID is not numeric
      */
-    public function testThatCloseIssueWithNonIntegerThrows ()
+    public function testThatCloseIssueWithNonIntegerThrows()
     {
         // Given
         $p = new PageController();
-
         // When, Then
         $p->closeIssue("Hodor");
     }
@@ -18,11 +17,10 @@ class PageControllerTest extends PHPUnit_Framework_TestCase
      * @expectedException        RuntimeException
      * @expectedExceptionMessage ID is not numeric
      */
-    public function testThatDeleteIssueWithNonIntegerThrows ()
+    public function testThatDeleteIssueWithNonIntegerThrows()
     {
         // Given
         $p = new PageController();
-
         // When, Then
         $p->deleteIssue("Hodor");
     }
@@ -31,7 +29,7 @@ class PageControllerTest extends PHPUnit_Framework_TestCase
      * @expectedException        RuntimeException
      * @expectedExceptionMessage ID is not numeric
      */
-    public function testThatReopenIssueWithNonIntegerThrows ()
+    public function testThatReopenIssueWithNonIntegerThrows()
     {
         // Given
         $p = new PageController();
@@ -39,4 +37,6 @@ class PageControllerTest extends PHPUnit_Framework_TestCase
         // When, Then
         $p->reopenIssue("Hodor");
     }
+
+    // TODO: Test when they do not throw.
 }

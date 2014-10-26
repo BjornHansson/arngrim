@@ -1,5 +1,5 @@
 <?php
-class StatisticsTest extends PHPUnit_Extensions_Selenium2TestCase
+class IndexTest extends PHPUnit_Extensions_Selenium2TestCase
 {
     const BASE_URL = "http://localhost/arngrim/index.php";
 
@@ -11,7 +11,11 @@ class StatisticsTest extends PHPUnit_Extensions_Selenium2TestCase
 
     public function testTitle()
     {
+        // Given
         $this->url(self::BASE_URL);
-        $this->assertEquals("Arngrim - Bug and issue tracker", $this->title());
+        // When, Then
+        $this->assertEquals(TITLE, $this->title());
     }
+
+    // TODO: Test the different URL.
 }

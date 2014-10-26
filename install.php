@@ -27,9 +27,13 @@ if(!$db->query("SELECT id FROM issues"))
     $result = $db->query($query);
 
     if($result)
+    {
         echo "Installation successful!";
+    }
     else
+    {
         echo "Something went wrong during the installation...";
+    }   
 }
 else
 {

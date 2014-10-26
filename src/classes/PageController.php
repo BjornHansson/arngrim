@@ -1,17 +1,26 @@
 <?php
-class PageController extends DatabaseHandler
+class PageController
 {
     private $errorIdMessage = "ID is not numeric";
+    private $db;
+    public $htmlPage;
+
+    public function __construct()
+    {
+        $this->htmlPage = new HtmlPage();
+        $this->db = new DatabaseHandler();
+    }
 
     public function closeIssue($id)
     {
         if(!is_numeric($id))
             throw new RuntimeException($this->errorIdMessage);
 
-        $url = $this->sanitize($_GET["url"]);
+        $url = $this->db->sanitize($_POST["url"]);
+        $desc = $this->db->sanitize($_POST["description"]);
 
-        $query = "UPDATE issues SET open = 0, url = '$url' WHERE id = $id LIMIT 1";
-        $result = $this->query($query);
+        $query = "UPDATE issues SET open = 0, url = '$url', description = '$desc' WHERE id = $id LIMIT 1";
+        $result = $this->db->query($query);
 
         $this->redirect("index.php");
     }
@@ -25,13 +34,13 @@ class PageController extends DatabaseHandler
             $formData[] = $date;
             foreach($_POST as $key => $value)
             {
-                $formData[] = $this->sanitize($value);
+                $formData[] = $this->db->sanitize($value);
             }
             $formData[] = "1";
             $sqlValues = implode("', '", $formData);
 
             $query = "INSERT INTO issues (date, title, description, writer, category, open) VALUES ('{$sqlValues}');";
-            $result = $this->query($query);
+            $result = $this->db->query($query);
         }
 
         $this->redirect("index.php");
@@ -43,7 +52,7 @@ class PageController extends DatabaseHandler
             throw new RuntimeException($this->errorIdMessage);
 
         $query = "DELETE FROM issues WHERE id = $id LIMIT 1";
-        $result = $this->query($query);
+        $result = $this->db->query($query);
 
         $this->redirect("index.php");
     }
@@ -54,12 +63,12 @@ class PageController extends DatabaseHandler
             throw new RuntimeException($this->errorIdMessage);
 
         $query = "UPDATE issues SET open = 1 WHERE id = $id LIMIT 1";
-        $result = $this->query($query);
+        $result = $this->db->query($query);
 
         $this->redirect("index.php");
     }
 
-    public function redirect($page)
+    private function redirect($page)
     {
         header("Location: " . $page);
         exit;

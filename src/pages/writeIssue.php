@@ -1,5 +1,3 @@
-<?php
-$html = <<<EOT
 <form class="form-horizontal" action="index.php?p=createIssue" method="post">
     <label>Title</label>
     <input name="title" class="form-control" type="text" required />
@@ -18,8 +16,5 @@ $html = <<<EOT
     </select>
 
     <button class="btn btn-success" type="submit">Save</button>
-    <button class="btn" type="reset" value="Reset">Reset</button>
+    <button class="btn" type="reset" value="Reset">Reset all</button>
 </form>
-EOT;
-
-echo $html;
