@@ -1,5 +1,4 @@
 <?php
-/*
 class InstallTest extends PHPUnit_Extensions_Selenium2TestCase
 {
     const BASE_URL = "http://localhost/arngrim/install.php";
@@ -10,12 +9,16 @@ class InstallTest extends PHPUnit_Extensions_Selenium2TestCase
         $this->setBrowserUrl(self::BASE_URL);
     }
 
-    public function testTitle()
+    public function testThatDatabaseTableCanBeInstalled()
     {
-        // TODO: Test install
         // Given
-        // $this->url(self::BASE_URL);
-        // When, Then
-        // $this->assertEquals(TITLE, $this->title());
+        $db = new DatabaseHandler();
+        $result = $db->query("DROP TABLE issues");
+        $this->assertEquals(true, $result);
+        // When
+        $this->url(self::BASE_URL);
+        // Then
+        $result = $db->query("SELECT * FROM issues");
+        $this->assertEquals("2", $result->num_rows);
     }
-}*/
+}

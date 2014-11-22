@@ -9,7 +9,7 @@ class IndexTest extends PHPUnit_Extensions_Selenium2TestCase
         $this->setBrowserUrl(self::BASE_URL);
     }
 
-    public function testTitle()
+    public function testThatTitleIsCorrect()
     {
         // Given
         $this->url(self::BASE_URL);
@@ -18,4 +18,11 @@ class IndexTest extends PHPUnit_Extensions_Selenium2TestCase
     }
 
     // TODO: Test the different URL.
+    public function testThatUrlWriteIssueWorks()
+    {
+        // Given
+        $this->url(self::BASE_URL . "?p=writeIssue");
+        // When, Then should contain a form that creates issue
+        $this->assertContains("action=\"index.php?p=createIssue\"", $this->source());
+    }
 }

@@ -12,7 +12,7 @@ class HtmlPage
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="icon" href="src/img/favicon.png">
             <title>' . TITLE . '</title>
-            <link href="src/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+            <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
             <link href="src/css/style.css" rel="stylesheet">
         </head>
 
@@ -81,14 +81,14 @@ class HtmlPage
         }
 
         echo $this->getHead("home");
-        require_once "src/pages/home.php";
+        require_once "src/htmlPages/home.php";
         echo $this->getFooter();
     }
 
     public function printWriteIssuePage()
     {
         echo $this->getHead("writeIssue");
-        require_once "src/pages/writeIssue.php";
+        require_once "src/htmlPages/writeIssue.php";
         echo $this->getFooter();
     }
 
@@ -113,7 +113,7 @@ class HtmlPage
         $totalMissingFunctionalities = $result->num_rows;
 
         echo $this->getHead("statistics");
-        require_once "src/pages/statistics.php";
+        require_once "src/htmlPages/statistics.php";
         echo $this->getFooter();
     }
 
@@ -124,7 +124,7 @@ class HtmlPage
         $row = mysqli_fetch_array($result);
 
         echo $this->getHead("");
-        require_once "src/pages/closeIssue.php";
+        require_once "src/htmlPages/closeIssue.php";
         echo $this->getFooter();
     }
 }

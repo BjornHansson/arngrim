@@ -20,9 +20,9 @@ if(!$db->query("SELECT id FROM issues"))
     $db->query($query);
 
     $query = "
-    INSERT INTO issues (id, title, description, category, writer, url, open) VALUES
-    (1, 'Title', 'Description', 'Category', 'Writer', '', 1),
-    (2, 'Title', 'Description', 'Category', 'Writer', 'http://mylinktogerrit.com', 0);
+    INSERT INTO issues (id, date, title, description, category, writer, url, open) VALUES
+    (1, '2014-12-06', 'Title', 'Description', 'Bug', 'Writer', '', 1),
+    (2, '2014-12-06', 'Title', 'Description', 'Bug', 'Writer', 'http://mylinktogerrit.com', 0);
     ";
     $result = $db->query($query);
 
@@ -33,7 +33,7 @@ if(!$db->query("SELECT id FROM issues"))
     else
     {
         echo "Something went wrong during the installation...";
-    }   
+    }
 }
 else
 {
