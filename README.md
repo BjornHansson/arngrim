@@ -3,6 +3,8 @@ Arngrim
 
 A lightweight bug and issue tracker to be used in small projects.
 
+![Screenshot](src/img/screenshot.jpg?raw=true "Screenshot")
+
 Goal
 -----------
 To keep my knowledge in web development up to date and learn more about it.
