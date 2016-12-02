@@ -13,6 +13,11 @@ Main techniques
 -----------
 PHP and MySQL because it is so easy to use and open source.
 
+Install
+-----------
+Create database, e.g. "arngrim".
+Browse/run install.php
+
 3PP and developer notes
 -----------
 - Bootstrap for beautiful design.
